@@ -1,0 +1,47 @@
+<h2>ルーム編集</h2>
+ 
+    <%= form_with model: @room, local: true do |f| %>
+      <% if @room.errors.any? %>
+       <% @room.errors.full_messages.each do |message| %>
+        <ul>
+         <li><%= message %></li>
+        </ul>
+       <% end %>
+      <% end %>
+
+      <table>
+        <tr>
+          <th><%= f.label :name ,"ルーム名" %></th>
+          <td><%= f.text_field :name %></td>
+        </tr>
+ 
+        <tr>
+          <th><%= f.label :introduce ,"ルーム紹介" %></th>
+          <td><%= f.text_area :introduce %></td>
+        </tr>
+ 
+        <tr>
+          <th><%= f.label :price ,"料金" %></th>
+          <td><%= f.text_field :price %></td>
+        </tr>
+ 
+        <tr>
+          <th><%= f.label :address ,"住所" %></th>
+          <td><%= f.text_field :address %>
+        </tr>
+
+        <tr>
+          <th><%= f.label :image ,"ルーム画像" %></th>
+          <td><% if @room.image? %>
+                <%= image_tag @room.image.url %>
+              <% end %>
+              <%= f.file_field :image %>
+        </tr>
+      </table>
+
+      <div>
+        <ul>
+          <li><%= f.submit "登録"%></li>
+        </ul>
+      </div>
+    <% end %>
