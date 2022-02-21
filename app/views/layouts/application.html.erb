@@ -17,7 +17,7 @@
       <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
         <li><a class="dropdown-item" href="#"><%= link_to "ルーム登録", :new_room %></a></li>
         <li><a class="dropdown-item" href="#"><%= link_to "登録済みルーム一覧", :rooms %></a></li>
-        <li><a class="dropdown-item" href="#"><%= link_to "設定", :users_edit %></a></li>
+        <li><a class="dropdown-item" href="#"><%= link_to "設定", user_path(current_user.id) %></a></li>
         <li><a class="dropdown-item" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a></li>
       </ul>
     <% else %>
