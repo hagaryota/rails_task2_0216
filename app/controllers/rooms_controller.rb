@@ -1,4 +1,11 @@
 class RoomsController < ApplicationController
+  before_action :search
+
+  def search
+    @q = Room.ransack(params[:q])
+    @search = @q.result
+  end
+
   def index
     @rooms = Room.all
   end
@@ -40,12 +47,6 @@ class RoomsController < ApplicationController
     @room.destroy
     flash[:notice] = "#{@room.name}」の情報を削除しました"
     redirect_to :rooms
-  end
-
-  before_action :search
-
-  def search
-    @results = @q.result
   end
 
 end

@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'reservations/index'
   root 'home#index'
 
   devise_for :users, controllers: {
@@ -9,7 +8,7 @@ Rails.application.routes.draw do
   resources :users
   resources :rooms
 
-  get 'reservations/search' => 'reservations#search'
+  get 'rooms/search' => 'rooms#search'
 
   get 'users/show'
   get 'users/edit'

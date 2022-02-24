@@ -1,16 +1,12 @@
-<div class ="container">
  <h3>部屋一覧</h3>
-<div class ="count">
- <% if @result != "" %>
- 検索結果:<%= @result_count %>件
+
+ <% if @search != "" %>
+ 検索結果:<%= @count %>件
  <% else%>
  検索できませんでした
  <% end %>
- </div>
 
-  <% @results.each do |room| %>
-  
-  <%= link_to rooms, class: "roomarea" do %>
+  <% @search.each do |room| %>
    <%= attachment_image_tag room, :image, fallback: "no_image_logo.png", size: '280x160' %>
    <%= room.name %>
    <%= room.address %>
