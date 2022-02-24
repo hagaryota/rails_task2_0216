@@ -54,6 +54,11 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'devise'
 
+
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'rails-i18n'
 gem 'pry-rails'
+gem 'ransack'
+
+gem 'will_paginate'
+gem 'bootstrap-will_paginate'

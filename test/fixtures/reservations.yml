@@ -1,0 +1,15 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  start_date: 2022-02-22 10:15:24
+  end_date: 2022-02-22 10:15:24
+  price: MyString
+  persons: 1
+  days: 1
+
+two:
+  start_date: 2022-02-22 10:15:24
+  end_date: 2022-02-22 10:15:24
+  price: MyString
+  persons: 1
+  days: 1
