@@ -1,13 +1,17 @@
 class ApplicationController < ActionController::Base
-    before_action :authenticate_user!
+  before_action :search
 
-    def after_sign_in_path_for(resource)
-      if user
-        flash[:notice] = "ログインに成功しました"
-        top_hello
-      else
-        flash[:notice] = "ログインできませんでした"
-        new_user_registration
-      end
+  def set_q
+    @q = Room.ransack(params[:q])
+  end
+
+  def after_sign_in_path_for(resource)
+    if current_user
+      flash[:notice] = "ログインに成功しました"
+      root_path
+    else
+      flash[:notice] = "ログインできませんでした"
+      new_user_registration
     end
+  end
 end

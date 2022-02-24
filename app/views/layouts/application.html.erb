@@ -12,7 +12,32 @@
 
   <body>
    <header>
-    <img scr="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"
+    <a href="http://localhost:3000/"><img src="https://presite-potepancamp-rails-02.herokuapp.com/assets/logo.png"></a>
+    
+    <div class="areaaicon">
+      <%= search_form_for @q, url: reservations_search_path, local: true do |f| %>
+        <%= f.text_field :area, value: @area, :placeholder => "エリア", size:'30x10' %>
+      <% end %>
+    </div>
+
+    <div class="keywordaicon">
+      <%= fsearch_form_for @q, url: reservations_search_path, local: true do |f| %>
+        <%= f.text_field :keyword, value: @keyword, :placeholder => "キーワード" %>
+      <% end %>
+     </div>
+  
+    <% if user_signed_in? %>
+      <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <li><a class="dropdown-item" href="#"><%= link_to "ルーム登録", :new_room %></a></li>
+        <li><a class="dropdown-item" href="#"><%= link_to "登録済みルーム一覧", :rooms %></a></li>
+        <li><a class="dropdown-item" href="#"><%= link_to "設定", user_path(current_user.id) %></a></li>
+        <li><a class="dropdown-item" href="#"><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></a></li>
+      </ul>
+    <% else %>
+
+      <%= link_to('ログイン', new_user_session_path) %>
+      <%= link_to('登録', new_user_registration_path) %>
+    <% end %>
    </header>
     <%= yield %>
   </body>
