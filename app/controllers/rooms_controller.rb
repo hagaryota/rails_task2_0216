@@ -41,4 +41,11 @@ class RoomsController < ApplicationController
     flash[:notice] = "#{@room.name}」の情報を削除しました"
     redirect_to :rooms
   end
+
+  before_action :search
+
+  def search
+    @results = @q.result
+  end
+
 end

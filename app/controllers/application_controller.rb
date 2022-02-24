@@ -1,12 +1,8 @@
 class ApplicationController < ActionController::Base
   before_action :search
-  
-  def search
-    @results = @q.result
-  end
 
   def set_q
-    @q = User.ransack(params[:q])
+    @q = Room.ransack(params[:q])
   end
 
   def after_sign_in_path_for(resource)
