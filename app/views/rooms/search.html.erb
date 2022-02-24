@@ -1,0 +1,15 @@
+ <h3>部屋一覧</h3>
+
+ <% if @search != "" %>
+ 検索結果:<%= @count %>件
+ <% else%>
+ 検索できませんでした
+ <% end %>
+
+  <% @search.each do |room| %>
+   <%= attachment_image_tag room, :image, fallback: "no_image_logo.png", size: '280x160' %>
+   <%= room.name %>
+   <%= room.address %>
+   ￥<%= room.price %>
+   <% end %>
+   <% end %>
