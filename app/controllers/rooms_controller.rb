@@ -4,6 +4,7 @@ class RoomsController < ApplicationController
   def search
     @q = Room.ransack(params[:q])
     @search = @q.result
+    @count = @search.count
   end
 
   def index
@@ -16,6 +17,7 @@ class RoomsController < ApplicationController
 
   def create
     @room = Room.new(params.require(:room).permit(:name, :introduce, :price, :address, :image))
+    @room.user_id = current_user.id
     if @room.save
       flash[:notice] = "ルームを新規登録しました"
       redirect_to :rooms

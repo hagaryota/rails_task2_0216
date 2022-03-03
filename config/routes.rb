@@ -5,10 +5,19 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
-  resources :users
-  resources :rooms
-
   get 'rooms/search' => 'rooms#search'
+
+  resources :reservations do
+    member do
+      post "confirm"
+      post "back"
+      get "comprete"
+    end
+  end
+
+  resources :users
+  resources :rooms 
+  resources :reservations
 
   get 'users/show'
   get 'users/edit'

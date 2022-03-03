@@ -7,9 +7,12 @@
  <% end %>
 
   <% @search.each do |room| %>
-   <%= attachment_image_tag room, :image, fallback: "no_image_logo.png", size: '280x160' %>
-   <%= room.name %>
-   <%= room.address %>
-   ￥<%= room.price %>
-   <% end %>
-   <% end %>
+    <% if room.image.attached? %>
+      <%= image_tag room.image, class: "room_image" %>
+    <% else %>
+      <%= image_tag "https://presite-potepancamp-rails-02.herokuapp.com/assets/room01.jpg", class: "room_image" %>
+    <% end %>
+    <%= link_to room.name, new_reservation_url(room.id) %>
+    <%= room.address %>
+    ￥<%= room.price %>
+    <% end %>
