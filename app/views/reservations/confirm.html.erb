@@ -1,0 +1,41 @@
+<div class='confirm'>
+ 
+<div class='confirm-in'>
+        <h5>予約内容確認</h5>
+        <div class = 'confirm-price'>¥<%= @reservation.price %>/ 日</div>
+        
+       <div>
+        <p>開始日</p>
+        <div class = 'confirm-date'>
+        <%= @reservation.start_date %></div>
+        </div>
+        
+        <div>
+          <p>終了日</p>
+          <div class = 'confirm-date'>
+         <%= @reservation.end_date %></div>
+       </div>
+       
+        <div class = 'confirm-day-people'>使用日数:<%= @day %></div>
+       
+         <div class = 'confirm-day-people'>人数:<%= @reservation.persons %></div>
+       
+       <div>
+          <p>合計金額</p>
+        <div class = 'confirm-price'> <%= @totalprice %></div>
+        <p>上記内容でよろしければ「予約を確定」を押してください</p>
+     </div> 
+     
+     <div class = 'confirm-form'>
+<%= form_for @reservation, method: :post, url: reservations_comprete_path(@reservation) do |f| %>
+	    <%= f.hidden_field :price,value: @reservation.totalprice%>
+    	<%= f.hidden_field :ma,e ,value: @reservation.name%>
+      <%= f.hidden_field :start_date ,value: @reservation.start_date%>   	
+    	<%= f.hidden_field :end_date,value: @reservation.end_date %>
+     
+	    <%= f.submit '予約を確定' ,class:'submit'%>
+<% end %>
+
+</div>
+</div>
+</div>

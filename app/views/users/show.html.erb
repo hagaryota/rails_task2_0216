@@ -1,0 +1,24 @@
+<ul>
+  <li><%= link_to "アカウント", :user %></li>
+  <li><%= link_to "プロフィール", :edit_user %></li>
+</ul>
+
+<h2>アカウント</h2>
+ 
+      <table>
+      <tr>
+        <th>メールアドレス</th>
+        <td><%= @user.email %></td>
+      </tr>
+
+      <tr>
+        <th>パスワード</th>
+        <td>*********</td>
+      </tr>
+    </table>
+    
+      <div>
+        <ul>
+        <li><a class="dropdown-item" href="#"><%= link_to "編集", users_edit_path(current_user.id) %></a></li>
+        </ul>
+      </div>
