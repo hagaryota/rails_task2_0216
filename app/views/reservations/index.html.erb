@@ -1,0 +1,37 @@
+<main class="reservations_index_main">
+  <div class="reservations_index_group">
+   <h3 class="reservations_title">予約済みルーム一覧</h3>
+    <table class="reservations_index_table">
+      <thead>
+        <tr class= "reservations_index_tr">
+          <th class= "reservations_index_th">ルーム画像</th>
+          <th class= "reservations_index_th">ルーム名</th>
+          <th class= "reservations_index_th">ルーム紹介</th>
+          <th class= "reservations_index_th">合計料金</th>
+          <th class= "reservations_index_th">開始日</th>
+          <th class= "reservations_index_th">終了日</th>
+          <th class= "reservations_index_th">予約確定日時</th>
+        </tr>
+      </thead>
+ 
+      <tbody>
+        <% @reservations.each do |reservation| %>
+          <tr class= "reservations_index_tr">
+            <td>
+              <% if reservation.room.image.attached? %>
+                <%= image_tag reservation.room.image, class: "room_image" %>
+              <% else %>
+                <%= image_tag "https://presite-potepancamp-rails-02.herokuapp.com/assets/room01.jpg", class: "room_image" %>
+              <% end %></td>
+            <td class= "reservations_index_td"><%= link_to reservation.room.name,new_reservation_path(reservation.room.id) %></td>
+            <td class= "reservations_index_td"><%= reservation.room.introduce %></td>
+            <td class= "reservations_index_td">¥<%= reservation.totalprice %></td>
+            <td class= "reservations_index_td"><%= reservation.start_date.strftime('%Y年%m月%d日') %></td>
+            <td class= "reservations_index_td"><%= reservation.end_date.strftime('%Y年%m月%d日') %></td>
+            <td class= "reservations_index_td"><%= reservation.created_at %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</main>

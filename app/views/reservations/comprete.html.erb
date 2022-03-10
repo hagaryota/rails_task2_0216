@@ -1,0 +1,12 @@
+    <div><p class ='b'>予約した部屋</p>
+    <p><%= @reservation.room.name %></p>
+    </div>
+    <div><p class ='b'>開始日</p>
+      <p><%= @reservation.start_date.strftime('%Y年%m月%d日') %></p>
+      </div>
+      <div><p class ='b'>終了日</p>
+     <p><%= @reservation.end_date.strftime('%Y年%m月%d日') %></p>
+     </div>
+     <div><p class ='b'>価格</p>
+     <p><%= @reservation.totalprice %>円</p>
+     </div>
