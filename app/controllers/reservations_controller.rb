@@ -1,7 +1,8 @@
 class ReservationsController < ApplicationController
+  before_action :authenticate_user!
+  
   def index
-    @reservations = current_user.reservations.all.order(updated_at: 'DESC')
-    binding.pry
+    @reservations = current_user.reservations.all
   end
 
   def new
@@ -21,7 +22,6 @@ class ReservationsController < ApplicationController
 
   def create
     @reservation = Reservation.new(reservations_params)
-    @reservation.user_id = current_user_id
     if @reservation.save
       flash[:notice] = "新規予約を登録しました"
       redirect_to comprete_reservation_path(@reservation.id)
@@ -35,6 +35,6 @@ class ReservationsController < ApplicationController
   end
 
   def reservations_params
-    params.require(:reservation).permit(:start_date, :end_date, :persons, :current_user_id, :room_id, :reservation_id, :totalprice, :days)
+    params.require(:reservation).permit(:start_date, :end_date, :persons, :user_id, :room_id, :reservation_id, :totalprice, :days)
   end
 end

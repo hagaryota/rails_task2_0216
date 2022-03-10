@@ -17,8 +17,13 @@
       <tbody>
         <% @reservations.each do |reservation| %>
           <tr class= "reservations_index_tr">
-            <td><%= image_tag reservation.room, :image, class: 'reservation_image' %></td>
-            <td class= "reservations_index_td"><%= link_to reservation.room.name,room_path(reservation.room.id) %></td>
+            <td>
+              <% if reservation.room.image.attached? %>
+                <%= image_tag reservation.room.image, class: "room_image" %>
+              <% else %>
+                <%= image_tag "https://presite-potepancamp-rails-02.herokuapp.com/assets/room01.jpg", class: "room_image" %>
+              <% end %></td>
+            <td class= "reservations_index_td"><%= link_to reservation.room.name,new_reservation_path(reservation.room.id) %></td>
             <td class= "reservations_index_td"><%= reservation.room.introduce %></td>
             <td class= "reservations_index_td">¥<%= reservation.totalprice %></td>
             <td class= "reservations_index_td"><%= reservation.start_date.strftime('%Y年%m月%d日') %></td>

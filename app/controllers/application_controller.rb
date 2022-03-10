@@ -1,6 +1,13 @@
 class ApplicationController < ActionController::Base  
   before_action :search
 
+  def autheniticate_user
+    if @current_user==nil
+      flash[:notice]="ログインが必要です"
+      redirect_to("/login")
+    end
+  end
+
   def search
     @q = Room.ransack(params[:q])
     @search = @q.result
